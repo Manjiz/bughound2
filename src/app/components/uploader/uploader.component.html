@@ -1,0 +1,52 @@
+<div class="mod_uploader">
+  <table>
+    <thead>
+      <tr>
+        <th width="20%">文件名</th>
+        <!-- <th>大小</th> -->
+        <th>进度</th>
+        <th>状态</th>
+        <th width="50%">操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of uploader.queue" class="mod_uploader_it">
+        <td class="mod_uploader_it_name">{{item.file.name}}</td>
+        <!-- <td nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td> -->
+        <td>
+          <div class="mod_uploader_progress">
+            <div class="mod_uploader_progress_bar" role="progressbar" [ngStyle]="{'width': item.progress + '%'}"></div>
+          </div>
+        </td>
+        <td class="mod_uploader_it_status">
+          <span *ngIf="item.isSuccess"><i class="iconfont">&#xe605;</i></span>
+          <span *ngIf="item.isCancel"><i class="iconfont">&#xe604;</i></span>
+          <span *ngIf="item.isError"><i class="iconfont">&#xe606;</i></span>
+        </td>
+        <td class="action">
+          <button class="mod_uploader_btn mod_uploader_it_upload" (click)="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">上传</button>
+          <button class="mod_uploader_btn mod_uploader_it_cancel" (click)="item.cancel()" ng-disabled="!item.isUploading">取消</button>
+          <button class="mod_uploader_btn mod_uploader_it_remove" (click)="item.remove()">移除</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="mod_uploader_inp">
+    <div ng2FileDrop [uploader]="uploader" contenteditable class="mod_uploader_inp_drop">拖放或粘贴截图等文件</div>
+    <!-- <div ng-if="!isMobile" nv-file-drop uploader="uploader" contenteditable class="mod_uploader_inp_drop">拖放或粘贴截图等文件</div> -->
+    <!-- <div ng-if="isMobile" class="mod_uploader_inp_select">
+      <input type="file" nv-file-select uploader="uploader">
+    </div> -->
+  </div>
+
+  <div class="mod_uploader_progress">
+    <div class="mod_uploader_progress_bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+  </div>
+
+  <div class="mod_uploader_handle">
+    <button class="mod_uploader_btn mod_uploader_uploadall" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">上传全部</button>
+    <button class="mod_uploader_btn mod_uploader_cancelall" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">取消全部</button>
+    <button class="mod_uploader_btn mod_uploader_removeall" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">移除全部</button>
+  </div>
+</div>

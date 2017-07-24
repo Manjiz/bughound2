@@ -1,6 +1,9 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    // https://github.com/ant-design/ant-design#typescript
+    // set allowSyntheticDefaultImports to prevent error TS1192: Module 'react' has no default export.
+    "allowSyntheticDefaultImports": true,
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,

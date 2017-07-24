@@ -1,0 +1,127 @@
+.mod_uploader {
+  width: 100%;
+  table {
+    table-layout: fixed;
+    margin-bottom:20px;
+    width:100%;
+    border-collapse:collapse;
+    border-spacing:0;
+    th {
+      padding: 5px;
+      background:#fbfbfb;
+      border-top:1px solid #ddd;
+      border-bottom:2px solid #ddd;
+      vertical-align:bottom;
+      white-space: nowrap;
+      word-wrap: normal;
+      text-align: left;
+    }
+    td {
+      padding: 5px;
+      vertical-align:middle;
+      border-top:1px solid #ddd;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+  }
+}
+.mod_uploader_it {
+
+}
+.mod_uploader_it_name {
+  font-weight: bold;
+  white-space: nowrap;
+  word-wrap: normal;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.mod_uploader_it_status {
+  text-align: center;
+}
+.mod_uploader_progress {
+  height:10px;
+  background:#f5f5f5;
+  border-radius:4px;
+  overflow:hidden;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,0.1);
+}
+.mod_uploader_progress_bar {
+  width:0%;
+  height:100%;
+  background:#428bca;
+  box-shadow:inset 0 -1px 0 rgba(0,0,0,0.15);
+  transition:width .6s ease;
+}
+.mod_uploader_btn {
+  padding:1px 5px;
+  font-size:12px;
+  line-height:1.5;
+  border:1px solid transparent;
+  border-radius:3px;
+  color:#fff;
+  cursor:pointer;
+  &[disabled] {
+    pointer-events:none;
+    cursor:not-allowed;
+    opacity:.65;
+  }
+  &.mod_uploader_it_remove, &.mod_uploader_removeall {
+    background:#d9534f;
+    border-color:#d43f3a;
+    &:hover {
+      background:#d2322d;
+      border-color:#ac2925;
+    }
+  }
+  &.mod_uploader_it_upload, &.mod_uploader_uploadall {
+    background:#5cb85c;
+    border-color:#4cae4c;
+    &:hover {
+      background:#47a447;
+      border-color:#398439;
+    }
+  }
+  &.mod_uploader_it_cancel, &.mod_uploader_cancelall {
+    background:#f0ad4e;
+    border-color:#eea236;
+    &:hover {
+      background:#ed9c28;
+      border-color:#d58512;
+    }
+  }
+  &.mod_uploader_removeall, &.mod_uploader_uploadall, &.mod_uploader_cancelall {
+    padding: 5px 10px;
+  }
+}
+.mod_uploader_inp {
+
+}
+.mod_uploader_inp_drop {
+  height:70px;
+  line-height:64px;
+  background:#f5f5f5;
+  border:3px dotted lightgray;
+  color:#bbb;
+  text-align:center;
+  img {
+    display:none;
+  }
+}
+.mod_uploader_inp_select {
+  position: relative;
+  height: 40px;
+  background: url(~assets/upload.png) no-repeat center;
+  background-size: auto 20px;
+  border: 1px solid lightgray;
+  input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+}
+.mod_uploader_handle {
+  margin-top: 10px;
+}

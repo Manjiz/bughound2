@@ -1,0 +1,63 @@
+<div class="apply">
+  <form class="apply_form">
+    <dl>
+      <dt><label>需求名称</label></dt>
+      <dd><input class="inp" type="text" style="width:100%;" placeholder="需求名称" ng-model="d_title"></dd>
+    </dl>
+    <dl>
+      <dt><label>所属业务</label></dt>
+      <dd>
+        <div class="dropdown {{isShowDropdown ? 'active' : ''}}" on-outside-element-click="isShowDropdown=false">
+          <i (click)="toggleDropdown()" class="dropdown_triangle"></i>
+          <div (click)="toggleDropdown()" class="dropdown_text">{{(model.business)?.get('name') || '选择一项业务'}}</div>
+          <div class="dropdown_menu">
+            <div
+              *ngFor="let item of business"
+              (click)="selectBusiness(item)"
+              class="dropdown_menu_item">{{item.get('name')}}</div>
+            <div class="dropdown_menu_item">
+              <div class="addsbu">
+                <input [(ngModel)]="model.newBusinessName" class="inp" type="text" name="newBusinessName">
+                <button (click)="addBusiness(model.newBusinessName)" class="btn">添加</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </dd>
+    </dl>
+    <dl>
+      <dt><label>需求描述</label></dt>
+      <dd><div id="editor" class="apply_editor"></div></dd>
+    </dl>
+    <div class="apply_form_right">
+      <dl>
+        <dt><label>文件上传</label></dt>
+        <dd class="uploader">
+          <app-uploader></app-uploader>
+        </dd>
+      </dl>
+    </div>
+  </form>
+  <button type="button" class="apply_form_submit btn" ng-click="submit()">提交需求</button>
+
+  <!-- S 提交成功弹层 -->
+  <div *ngIf="isSubmitSucc" class="apply_succpop">
+    <div class="apply_succpop_main">
+      <div class="apply_succpop_main_wrap">
+        <div class="apply_succpop_top">嘿！</div>
+        <div class="apply_succpop_cont">
+          <div class="apply_succpop_cont_text">
+            您的需求已经提交，编号：
+            <div class="apply_succpop_cont_text_num" ng-bind="bugid"></div>
+            快去告诉小伙伴来处理吧
+          </div>
+          <div class="ly_box">
+            <a href="#" class="apply_succpop_cont_continue ly_box_flexone" ui-sref="apply" ui-sref-opts="{reload:true}">继续申请</a>
+            <a href="#" class="apply_succpop_cont_checknow ly_box_flexone" ui-sref="detail({id:bugid})">查看需求</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- E 提交成功弹层 -->
+</div>

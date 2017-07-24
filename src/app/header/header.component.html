@@ -1,0 +1,38 @@
+<header class="mod_hd">
+  <div class="mod_hd_wrap">
+    <div class="mod_hd_cont">
+      <div class="mod_hd_logo" ui-sref="apply">
+        <i><!-- &#xe600; --></i>
+        <!-- <div>需求提报</div> -->
+      </div>
+      <nav class="mod_hd_nav">
+        <ul class="mod_hd_nav_ul">
+          <li routerLink="/gallery" routerLinkActive="active">广场</li>
+          <li routerLink="/apply" routerLinkActive="active">申请</li>
+          <li routerLink="/business" routerLinkActive="active">业务</li>
+          <li routerLink="/developer" routerLinkActive="active" *ngIf="currentUser">开发者</li>
+        </ul>
+      </nav>
+      <div class="mod_hd_info">
+        <div class="mod_hd_info_user">
+          <div (click)="isShowSignInPop = !isShowSignInPop" class="mod_hd_info_user_main">
+            <!-- <i class="iconfont">&#xe601;</i> -->
+            <span class="mod_hd_info_user_text" href="#">{{currentUser ? currentUser.get('username') : '开发者登录'}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- S 登录框 -->
+<div *ngIf="isShowSignInPop" class="mod_signin">
+  <div (click)="closeSigninPop()" class="mod_signin_bg"></div>
+  <form class="mod_signin_wrap">
+    <input
+      [(ngModel)]="model.username" type="text" placeholder="输入 ERP" name="username" class="mod_signin_erp">
+    <input (click)="signin()" type="submit" value="{{currentUser ? '切换':'登录'}}" class="mod_signin_submit">
+    <button (click)="signout()" class="mod_signin_submit" *ngIf="currentUser">登出</button>
+  </form>
+</div>
+<!-- E 登录框 -->
